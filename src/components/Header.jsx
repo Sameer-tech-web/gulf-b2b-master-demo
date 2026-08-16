@@ -1,8 +1,8 @@
 import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export default function Header() {
-  const phone = '+97141234567';
-  const whatsappNumber = '971501234567';
+  const phone = '+9232388999556';
+  const whatsappNumber = '923238999556';
   const whatsappMsg = encodeURIComponent(
     'Hi, I visited your website and would like to get a quote for technical services in Dubai.'
   );
