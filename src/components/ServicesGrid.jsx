@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Zap,
   Wrench,
@@ -7,6 +7,10 @@ import {
   ShieldCheck,
   Award,
   ArrowUpRight,
+  X,
+  CheckCircle2,
+  Clock,
+  MessageCircle,
 } from 'lucide-react';
 
 const services = [
@@ -15,40 +19,83 @@ const services = [
     icon: Zap,
     title: 'HVAC & Central AC Maintenance',
     desc: 'Chiller overhauling, FCU/AHU maintenance, duct cleaning, and smart thermostat integrations for large commercial towers.',
+    specs: [
+      '2-Hour Emergency Response SLA in Business Bay & Downtown',
+      'Chiller Plant Overhauling & Preventive Chemical Washing',
+      'Indoor Air Quality (IAQ) & Duct Sanitization Certification',
+      'DEWA Energy Efficiency Compliance Audit Included',
+    ],
+    pricing: 'Custom AMC Packages Available',
   },
   {
     id: 'electrical-power-systems',
     icon: Wrench,
     title: 'Electrical & Power Systems',
     desc: 'DEWA approved electrical installations, DB panel maintenance, emergency wiring repairs, and LED retrofitting.',
+    specs: [
+      'DEWA Certified Senior Engineers & Technicians',
+      'Thermal Imaging Leakage & DB Panel Load Testing',
+      'UPS & Generator Backup System Maintenance',
+      'Commercial LED Retrofitting for Energy Savings',
+    ],
+    pricing: 'On-Demand & Annual Contracts',
   },
   {
     id: 'plumbing-piping-networks',
     icon: Droplet,
     title: 'Plumbing & Piping Networks',
     desc: 'Commercial water pump maintenance, pipe leak detection, drainage clearing, and booster pump overhauls.',
+    specs: [
+      'Ultrasonic Pipe Leak Detection (Non-Destructive)',
+      'Water Tank Cleaning & Dubai Municipality Certification',
+      'High-Pressure Hydro Jetting for Drainage Blockages',
+      'Booster & Transfer Pump Rewinding Services',
+    ],
+    pricing: 'Inspection Based Assessment',
   },
   {
     id: 'commercial-fit-out-gypsum',
     icon: Building,
     title: 'Commercial Fit-Out & Gypsum',
     desc: 'Office partitioning, ceiling systems, epoxy flooring, glass partition works, and full interior turnkeys.',
+    specs: [
+      '3D CAD Layout & Space Planning Approval Support',
+      'Acoustic Glass Partitioning & Gypsum Ceiling Works',
+      'Industrial Grade Epoxy & Raised Access Flooring',
+      'Dubai Civil Defense (DCD) Approval Assistance',
+    ],
+    pricing: 'Per Sq. Ft Commercial Quotes',
   },
   {
     id: 'annual-maintenance-contracts',
     icon: ShieldCheck,
     title: 'Annual Maintenance Contracts (AMC)',
     desc: 'Comprehensive 365-day facility management contracts for office buildings, retail chains, and luxury villas.',
+    specs: [
+      '24/7 Dedicated Helpdesk & Dispatch Command Center',
+      'Unlimited Emergency Call-outs for HVAC & Electrical',
+      'Quarterly Comprehensive Preventive Maintenance Visits',
+      'Dedicated Facility Manager Assigned for Corporate AMC',
+    ],
+    pricing: 'Tailored Corporate Contracts',
   },
   {
     id: 'civil-work-painting',
     icon: Award,
     title: 'Civil Work & Painting',
     desc: 'Interior/exterior protective painting, tile restoration, waterproofing solutions, and masonry repairs.',
+    specs: [
+      'Weather-Resistant Exterior Facade Elastomeric Coating',
+      'Roof & Wet Area Waterproofing Injection Grouting',
+      'Marble Polish, Tile Replacement & Concrete Repairs',
+      'Zero-VOC Indoor Eco Painting for Corporate Offices',
+    ],
+    pricing: 'Project Based Estimation',
   },
 ];
 
 export default function ServicesGrid() {
+  const [selectedService, setSelectedService] = useState(null);
   const whatsappNumber = '923238999556';
 
   return (
@@ -66,20 +113,16 @@ export default function ServicesGrid() {
         </p>
       </div>
 
+      {/* Grid Display */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => {
           const Icon = service.icon;
-          const serviceQuery = encodeURIComponent(
-            `Hi, I am interested in getting a proposal for ${service.title} in Dubai.`
-          );
 
           return (
-            <a
+            <div
               key={service.id}
-              href={`https://wa.me/${whatsappNumber}?text=${serviceQuery}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-2xl cursor-pointer"
+              onClick={() => setSelectedService(service)}
+              className="group relative flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-2xl"
             >
               <div>
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 shadow-md transition-transform group-hover:scale-105">
@@ -96,16 +139,93 @@ export default function ServicesGrid() {
               </div>
 
               <div className="flex items-center pt-4 text-xs font-bold text-slate-900 transition-colors group-hover:text-amber-600 border-t border-slate-100">
-                <span>EXPLORE CONTRACT SPECS</span>
+                <span>VIEW TECHNICAL SPECS</span>
                 <ArrowUpRight
                   size={16}
                   className="ml-1.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </div>
-            </a>
+            </div>
           );
         })}
       </div>
+
+      {/* Technical Specs Modal Window */}
+      {selectedService && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl sm:p-8 border border-slate-100 animate-in fade-in zoom-in duration-200">
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedService(null)}
+              className="absolute right-4 top-4 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Modal Header */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 text-amber-500 shadow-md">
+                {React.createElement(selectedService.icon, { size: 28 })}
+              </div>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                  Contract Specification
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  {selectedService.title}
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+              {selectedService.desc}
+            </p>
+
+            {/* Service Specifications List */}
+            <div className="rounded-xl bg-slate-50 p-5 mb-6 border border-slate-200/60">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-2">
+                <Clock size={14} className="text-amber-500" />
+                Scope of Work & Compliance Standards
+              </h4>
+              <ul className="space-y-2.5">
+                {selectedService.specs.map((spec, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                    <span>{spec}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-slate-100">
+              <div className="text-xs font-bold text-slate-500">
+                Structure: <span className="text-slate-900">{selectedService.pricing}</span>
+              </div>
+              <div className="flex gap-3 w-full sm:w-auto">
+                <a
+                  href="#contact"
+                  onClick={() => setSelectedService(null)}
+                  className="flex-1 sm:flex-none text-center rounded-lg bg-slate-900 px-5 py-2.5 text-xs font-bold text-white transition hover:bg-slate-800"
+                >
+                  Request Proposal
+                </a>
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                    `Hi, I need details regarding ${selectedService.title}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white transition hover:bg-emerald-700"
+                >
+                  <MessageCircle size={15} />
+                  Ask via WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
