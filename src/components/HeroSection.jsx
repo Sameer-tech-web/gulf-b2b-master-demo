@@ -1,7 +1,7 @@
 import { ShieldCheck, ArrowRight, Phone } from 'lucide-react';
 
 export default function HeroSection() {
-  const phone = '+97141234567';
+  const phone = '+923238999556';
 
   return (
     <section className="relative overflow-hidden bg-slate-900 px-4 py-16 text-white sm:px-8 lg:py-24">
