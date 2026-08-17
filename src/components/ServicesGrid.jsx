@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Zap,
   Wrench,
@@ -5,6 +6,7 @@ import {
   Building,
   ShieldCheck,
   Award,
+  ArrowUpRight,
 } from 'lucide-react';
 
 const services = [
@@ -50,20 +52,18 @@ export default function ServicesGrid() {
   return (
     <section
       id="services"
-      className="mx-auto max-w-7xl px-4 py-20 sm:px-8"
+      className="mx-auto max-w-7xl px-4 py-24 sm:px-8"
     >
-      <div className="mx-auto mb-14 max-w-2xl text-center">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-600">
-          Capabilities
+      <div className="mx-auto mb-16 max-w-2xl text-center">
+        <span className="rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-600">
+          Core Capabilities
+        </span>
+        <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          Comprehensive Engineering Solutions
         </h2>
-
-        <p className="text-3xl font-bold text-slate-900">
-          Comprehensive Technical Services
-        </p>
-
-        <p className="mt-2 text-sm text-slate-600">
-          High-performance engineering solutions for commercial and residential
-          developments.
+        <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+          High-performance facility maintenance tailored to meet strict Dubai
+          Municipality & Civil Defense standards.
         </p>
       </div>
 
@@ -74,23 +74,29 @@ export default function ServicesGrid() {
           return (
             <div
               key={service.id}
-              className="rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition duration-300 hover:shadow-xl"
+              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-2xl"
             >
-              <div className="mb-5 inline-block rounded-xl bg-amber-50 p-3">
-                <Icon
-                  size={28}
-                  className="text-amber-500"
-                  aria-hidden="true"
-                />
+              <div>
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 shadow-md transition-transform group-hover:scale-105">
+                  <Icon size={28} className="text-amber-500" aria-hidden="true" />
+                </div>
+
+                <h3 className="mb-3 text-xl font-bold text-slate-900 transition-colors group-hover:text-amber-600">
+                  {service.title}
+                </h3>
+
+                <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                  {service.desc}
+                </p>
               </div>
 
-              <h3 className="mb-3 text-xl font-bold text-slate-900">
-                {service.title}
-              </h3>
-
-              <p className="text-sm leading-relaxed text-slate-600">
-                {service.desc}
-              </p>
+              <div className="flex items-center pt-4 text-xs font-bold text-slate-900 transition-colors group-hover:text-amber-600 border-t border-slate-100">
+                <span>EXPLORE CONTRACT SPECS</span>
+                <ArrowUpRight
+                  size={16}
+                  className="ml-1.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </div>
             </div>
           );
         })}
