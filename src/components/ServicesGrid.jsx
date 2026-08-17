@@ -49,11 +49,10 @@ const services = [
 ];
 
 export default function ServicesGrid() {
+  const whatsappNumber = '923238999556';
+
   return (
-    <section
-      id="services"
-      className="mx-auto max-w-7xl px-4 py-24 sm:px-8"
-    >
+    <section id="services" className="mx-auto max-w-7xl px-4 py-24 sm:px-8">
       <div className="mx-auto mb-16 max-w-2xl text-center">
         <span className="rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-600">
           Core Capabilities
@@ -70,11 +69,17 @@ export default function ServicesGrid() {
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => {
           const Icon = service.icon;
+          const serviceQuery = encodeURIComponent(
+            `Hi, I am interested in getting a proposal for ${service.title} in Dubai.`
+          );
 
           return (
-            <div
+            <a
               key={service.id}
-              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-2xl"
+              href={`https://wa.me/${whatsappNumber}?text=${serviceQuery}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-2xl cursor-pointer"
             >
               <div>
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 shadow-md transition-transform group-hover:scale-105">
@@ -97,7 +102,7 @@ export default function ServicesGrid() {
                   className="ml-1.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </div>
-            </div>
+            </a>
           );
         })}
       </div>
