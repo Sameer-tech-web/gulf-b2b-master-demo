@@ -1,8 +1,8 @@
 import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export default function Header() {
-  const phone = '+9232388999556';
-  const whatsappNumber = '923238999556';
+  const rawNumber = '923238999556';
+  const displayPhone = '+92 323 8999556';
   const whatsappMsg = encodeURIComponent(
     'Hi, I visited your website and would like to get a quote for technical services in Dubai.'
   );
@@ -25,11 +25,11 @@ export default function Header() {
 
         <div className="flex items-center space-x-4">
           <a
-            href={`tel:${phone}`}
+            href={`tel:+${rawNumber}`}
             className="flex items-center gap-1 transition hover:text-amber-400"
           >
             <Phone size={13} className="text-amber-400" />
-            +971 4 123 4567
+            {displayPhone}
           </a>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function Header() {
           </div>
 
           <a
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMsg}`}
+            href={`https://wa.me/${rawNumber}?text=${whatsappMsg}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
