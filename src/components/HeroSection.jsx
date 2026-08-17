@@ -1,7 +1,13 @@
-import { ShieldCheck, ArrowRight, Phone } from 'lucide-react';
+import React from 'react';
+import { ShieldCheck, ArrowRight, Phone, Lock } from 'lucide-react';
 
 export default function HeroSection() {
-  const phone = '+923238999556';
+  const myWhatsAppNumber = '923238999556';
+  const displayPhone = '+971 4 392 8844';
+
+  const heroWhatsAppMsg = encodeURIComponent(
+    'Hi! I am interested in getting a website built like this Apex Technical Services demo.'
+  );
 
   return (
     <section className="relative overflow-hidden bg-slate-900 px-4 py-16 text-white sm:px-8 lg:py-24">
@@ -34,11 +40,13 @@ export default function HeroSection() {
             </a>
 
             <a
-              href={`tel:${phone}`}
+              href={`https://wa.me/${myWhatsAppNumber}?text=${heroWhatsAppMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-7 py-3.5 text-center font-semibold text-white transition hover:bg-slate-700"
             >
               <Phone size={18} className="text-amber-400" />
-              Call Dispatch Team
+              Call Dispatch ({displayPhone})
             </a>
           </div>
         </div>
@@ -134,6 +142,11 @@ export default function HeroSection() {
             >
               Submit Quote Request
             </button>
+
+            <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] font-medium text-slate-500">
+              <Lock size={12} className="text-emerald-600" />
+              <span>Instant Dispatch Confirmation | 24/7 Support Desk</span>
+            </div>
           </form>
         </div>
       </div>
