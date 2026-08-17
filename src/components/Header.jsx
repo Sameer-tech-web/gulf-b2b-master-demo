@@ -1,10 +1,15 @@
+import React from 'react';
 import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export default function Header() {
-  const rawNumber = '923238999556';
-  const displayPhone = '+92 323 8999556';
-  const whatsappMsg = encodeURIComponent(
-    'Hi, I visited your website and would like to get a quote for technical services in Dubai.'
+  // Back-end routing to your WhatsApp
+  const myWhatsAppNumber = '923238999556';
+  
+  // Front-end Dubai display number for client trust
+  const displayPhone = '+971 4 392 8844';
+
+  const initialMsg = encodeURIComponent(
+    'Hi, I saw your Apex Technical Services demo site and I want a custom website built for my business.'
   );
 
   return (
@@ -19,14 +24,16 @@ export default function Header() {
 
           <span className="hidden items-center gap-1.5 md:flex">
             <Clock size={14} className="text-amber-400" />
-            24/7 Emergency Support
+            24/7 Dispatch Command Desk
           </span>
         </div>
 
         <div className="flex items-center space-x-4">
           <a
-            href={`tel:+${rawNumber}`}
-            className="flex items-center gap-1 transition hover:text-amber-400"
+            href={`https://wa.me/${myWhatsAppNumber}?text=${initialMsg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 transition hover:text-amber-400"
           >
             <Phone size={13} className="text-amber-400" />
             {displayPhone}
@@ -54,30 +61,19 @@ export default function Header() {
           </div>
 
           <div className="hidden items-center space-x-8 text-sm font-medium text-slate-700 lg:flex">
-            <a
-              href="#services"
-              className="transition hover:text-amber-500"
-            >
-              Services
+            <a href="#services" className="transition hover:text-amber-500">
+              Capabilities
             </a>
-
-            <a
-              href="#trust"
-              className="transition hover:text-amber-500"
-            >
-              Credentials
+            <a href="#credentials" className="transition hover:text-amber-500">
+              Certifications
             </a>
-
-            <a
-              href="#contact"
-              className="transition hover:text-amber-500"
-            >
+            <a href="#contact" className="transition hover:text-amber-500">
               Contact
             </a>
           </div>
 
           <a
-            href={`https://wa.me/${rawNumber}?text=${whatsappMsg}`}
+            href={`https://wa.me/${myWhatsAppNumber}?text=${initialMsg}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
